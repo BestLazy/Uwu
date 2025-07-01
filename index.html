@@ -47,7 +47,6 @@
     button:hover {
       background: #039be5;
     }
-    /* กรอบเพลงแบบใหม่ */
     .music-box {
       margin-top: 30px;
       background: #e1f5fe;
@@ -79,24 +78,33 @@
       อย่าหักโหมนะ ดูแลตัวเองดีๆ ด้วยนะคั้บ
     </p>
     <img src="IMG_6048.jpeg" alt="หมาโต &amp; หมาจิ๋ว" />
-    <button onclick="revealSecret()">กดตรงนี้สิ!</button>
+    <button onclick="revealSecretAndPlay()">กดตรงนี้สิ!</button>
     <div id="secret">
       <p>ถ้าเหนื่อยเย้อะๆ ข้างๆ ยังมีหมาโตอยู่นา ✨</p>
       <p>ถึงจะไม่ได้อยู่ด้วยกัน แต่หันมาเถอะ จะเจอผมแน่นอน!</p>
       <p>รักหมาจิ๋วมากๆนะคั้บ 💙</p>
       <p style="margin-top: 20px;">ด้วยรักจากหมาโตของหมาจิ๋ว 💙</p>
     </div>
-    <div class="music-box">
+    <div class="music-box" id="musicBox" style="display:none;">
       <h3>🎶 เพลงพิเศษสำหรับหมาจิ๋ว</h3>
-     <iframe
-  src="https://www.youtube.com/embed/LtS8AxkgbIs?rel=0"
-  allowfullscreen
-  ></iframe>
+      <!-- iframe เพลงจะถูกใส่ที่นี่ -->
     </div>
   </div>
   <script>
-    function revealSecret() {
+    function revealSecretAndPlay() {
+      // แสดงข้อความลับ
       document.getElementById('secret').style.display = 'block';
+
+      // แสดงกล่องเพลงและใส่ iframe พร้อม autoplay
+      const musicBox = document.getElementById('musicBox');
+      if (!musicBox.innerHTML.includes('<iframe')) {
+        musicBox.style.display = 'block';
+        musicBox.innerHTML += `<iframe
+          src="https://www.youtube.com/embed/LtS8AxkgbIs?autoplay=1&rel=0"
+          allow="autoplay; encrypted-media"
+          allowfullscreen
+          ></iframe>`;
+      }
     }
   </script>
 </body>
